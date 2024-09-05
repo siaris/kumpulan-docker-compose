@@ -1,0 +1,19 @@
+services:
+  nginx:
+    image: nginx:latest
+    build: ./nginx/
+    container_name: nginx
+    ports:
+      - "801:800"
+    volumes:
+      - ./www/html:/var/www/html
+    depends_on:
+      - php 
+  php:
+    build: ./php/
+    image: php:8.1-fpm
+    expose: 
+     - 9000
+    container_name: php
+    volumes:
+      - ./www/html:/var/www/html
